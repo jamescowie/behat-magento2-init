@@ -43,14 +43,13 @@ final class Magento2InitListener implements EventSubscriberInterface
 
     public function initMagento()
     {
-        //$bootstrapPath = getcwd() . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'bootstrap.php';
         $bootstrapPath = $this->config->getApplicationBootstrapPath();
 
-        if (!file_exists($bootstrapPath)) {
+        if (!file_exists($bootstrapPath[0]['path'])) {
             throw new \RuntimeException(sprintf("Magento's bootstrap file was not found at path '%s'", $bootstrapPath));
         }
 
-        include $bootstrapPath;
+        include $bootstrapPath[0]['path'];
 
         $params = $_SERVER;
 

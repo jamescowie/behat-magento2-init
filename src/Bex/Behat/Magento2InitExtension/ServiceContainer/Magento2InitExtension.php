@@ -45,6 +45,16 @@ class Magento2InitExtension implements Extension
     {
         $builder
             ->children()
+                ->arrayNode(Config::CONFIG_KEY_MAGENTO_BOOTSTRAP)
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('path')
+                                ->isRequired()
+                                ->cannotBeEmpty()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
                 ->arrayNode(Config::CONFIG_KEY_MAGENTO_CONFIGS)
                     ->prototype('array')
                         ->children()
