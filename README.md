@@ -1,6 +1,8 @@
 Behat-Magento2InitExtension
 =========================
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jamescowie/behat-magento2-init/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jamescowie/behat-magento2-init/?branch=master)
+
 Behat-Magento2InitExtension provides access to the magento2 object manager through the BaseFixture class and allows you to change magento config settings temporarly when Behat is running.
 
 Installation
@@ -20,14 +22,19 @@ Enable the extension in `behat.yml` like this:
 ```yml
 default:
   extensions:
-    Bex\Behat\Magento2InitExtension: ~
+    Bex\Behat\Magento2InitExtension: 
+       magento_bootstrap: 'app/bootstrap.php'
 ```
+
+So that this extension can be used on both projects and modules `magento_bootstrap` is a required setting this needs
+to be set to the path of the Magento 2 `app/bootstrap.php` file. 
 
 You can change magento config settings like this:
 ```yml
 default:
   extensions:
     Bex\Behat\Magento2InitExtension:
+      magento_bootstrap: 'app/bootstrap.php'
       magento_configs:
         -
           path: 'admin/security/use_form_key'
